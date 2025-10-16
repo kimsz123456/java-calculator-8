@@ -21,6 +21,8 @@ public class StringCalculator {
 
         String[] extractedNumbers = extractNumbers(string, delimiters);
 
+        validateNumbers(extractedNumbers);
+
         return sum(extractedNumbers);
     }
 
@@ -42,13 +44,23 @@ public class StringCalculator {
         int sum = 0;
         for (String number : numbers) {
             if (!number.isEmpty()) {
-                sum += parseNumber(number);
+                sum += Integer.parseInt(number.trim());
             }
         }
         return sum;
     }
 
-    private int parseNumber(String number) {
-        return Integer.parseInt(number.trim());
+    private void validateNumbers(String[] numbers) {
+        for (String number : numbers) {
+            String trimmed = number.trim();
+
+            if (trimmed.isEmpty()) {
+                throw new InvalidInputException("빈 값이 포함되어 있습니다.");
+            }
+
+            if (!trimmed.matches("\\d+")) {
+                throw new InvalidInputException("숫자가 아닌 값이 포함되어 있습니다: " + trimmed);
+            }
+        }
     }
 }
