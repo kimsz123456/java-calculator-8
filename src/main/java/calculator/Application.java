@@ -5,5 +5,7 @@ public class Application {
         Input input = new Input();
         Output output = new Output();
         StringCalculator calculator = new StringCalculator();
+
+        String inputString = input.readInput();
     }
 }
