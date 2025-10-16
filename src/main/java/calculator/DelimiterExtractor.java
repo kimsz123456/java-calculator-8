@@ -28,12 +28,12 @@ public class DelimiterExtractor {
             }
 
             char customDelimiter = customDelimiterStr.charAt(0);
-            String numbers = input.substring(delimiterEndIndex + separatorLength);
+            String string = input.substring(delimiterEndIndex + separatorLength);
 
             Set<Character> allDelimiters = new HashSet<>(DEFAULT_DELIMITERS);
             allDelimiters.add(customDelimiter);
 
-            return new ExtractResult(allDelimiters, numbers);
+            return new ExtractResult(allDelimiters, string);
         }
         return new ExtractResult(DEFAULT_DELIMITERS, input);
     }
