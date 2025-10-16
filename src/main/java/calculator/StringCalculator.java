@@ -39,15 +39,22 @@ public class StringCalculator {
     }
 
     private int sum(String[] numbers) {
-        int sum = 0;
+        long sum = 0;
         for (String number : numbers) {
             String trimmed = number.trim();
             if(trimmed.isEmpty()) continue;
             if (!trimmed.matches("\\d+")) {
                 throw new InvalidInputException("숫자가 아닌 값이 포함되어 있습니다: " + trimmed);
             }
-            sum += Integer.parseInt(trimmed);
+            try {
+                sum += Integer.parseInt(trimmed);;
+            } catch (NumberFormatException e) {
+                throw new InvalidInputException("입력 숫자가 정수 범위를 초과했습니다: " + number);
+            }
+            if (sum > Integer.MAX_VALUE) {
+                throw new InvalidInputException("합계가 정수 범위를 초과했습니다.");
+            }
         }
-        return sum;
+        return (int) sum;
     }
 }
