@@ -26,7 +26,7 @@ public class StringCalculator {
 
     private String[] extractNumbers(String string, Set<Character> delimiters) {
         String regex = createRegex(delimiters);
-        return string.split(regex,-1);
+        return string.split(regex, -1);
     }
 
     private String createRegex(Set<Character> delimiters) {
@@ -42,12 +42,14 @@ public class StringCalculator {
         long sum = 0;
         for (String number : numbers) {
             String trimmed = number.trim();
-            if(trimmed.isEmpty()) continue;
+            if (trimmed.isEmpty()) {
+                continue;
+            }
             if (!trimmed.matches("\\d+")) {
                 throw new InvalidInputException("숫자가 아닌 값이 포함되어 있습니다: " + trimmed);
             }
             try {
-                sum += Integer.parseInt(trimmed);;
+                sum += Integer.parseInt(trimmed);
             } catch (NumberFormatException e) {
                 throw new InvalidInputException("입력 숫자가 정수 범위를 초과했습니다: " + number);
             }
