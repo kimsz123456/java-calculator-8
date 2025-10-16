@@ -7,5 +7,6 @@ public class Application {
         StringCalculator calculator = new StringCalculator();
 
         String inputString = input.readInput();
+        int result = calculator.calculate(inputString);
     }
 }
