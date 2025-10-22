@@ -17,14 +17,14 @@ public class DelimiterExtractor {
 
             // 형식 검증
             if (delimiterEndIndex == -1 || delimiterEndIndex <= 2) {
-                throw new InvalidInputException("커스텀 구분자 형식이 잘못되었습니다.");
+                throw new IllegalArgumentException("커스텀 구분자 형식이 잘못되었습니다.");
             }
 
             String customDelimiterStr = input.substring(2, delimiterEndIndex);
 
             // 1글자가 아니면 예외
             if (customDelimiterStr.length() != 1) {
-                throw new InvalidInputException("커스텀 구분자는 1글자여야 합니다.");
+                throw new IllegalArgumentException("커스텀 구분자는 1글자여야 합니다.");
             }
 
             char customDelimiter = customDelimiterStr.charAt(0);

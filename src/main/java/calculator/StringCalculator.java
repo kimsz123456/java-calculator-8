@@ -30,15 +30,15 @@ public class StringCalculator {
                 continue;
             }
             if (!number.matches("\\d+")) {
-                throw new InvalidInputException("숫자가 아닌 값이 포함되어 있습니다: " + number);
+                throw new IllegalArgumentException("숫자가 아닌 값이 포함되어 있습니다: " + number);
             }
             try {
                 sum += Integer.parseInt(number);
             } catch (NumberFormatException e) {
-                throw new InvalidInputException("입력 숫자가 정수 범위를 초과했습니다: " + number);
+                throw new IllegalArgumentException("입력 숫자가 정수 범위를 초과했습니다: " + number);
             }
             if (sum > Integer.MAX_VALUE) {
-                throw new InvalidInputException("합계가 정수 범위를 초과했습니다.");
+                throw new IllegalArgumentException("합계가 정수 범위를 초과했습니다.");
             }
         }
         return (int) sum;
